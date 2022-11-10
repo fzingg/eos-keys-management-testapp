@@ -39,7 +39,7 @@ describe('HomeView', () => {
     const generatedpublickeys = wrapper.vm.generatedpublickeys
     const firstgeneratedpublickey = generatedpublickeys[0]['publickey']
 
-    const first_item_content = items.at(0).text() 
+    const first_item_content = items[0].text() 
 
     expect(first_item_content).toEqual(firstgeneratedpublickey)
   });
