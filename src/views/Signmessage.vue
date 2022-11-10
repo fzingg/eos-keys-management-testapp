@@ -62,7 +62,7 @@ export default {
       form.reset()
     },
 
-    async displaySignature(inputmessage: string, encPrivateKey: string, pincode: string) {
+    async displaySignature(inputmessage: string, encPrivateKey: string | null, pincode: string) {
       if (encPrivateKey != null) {
         this.encryptedMessageSignature = generateMessageSignature(inputmessage, encPrivateKey, pincode)
       } else {
