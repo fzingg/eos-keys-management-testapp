@@ -86,6 +86,7 @@ export default {
     ></v-text-field>
 
     <v-btn
+      data-buttonid="recover-publickey"
       color="success"
       class="mr-4"
       @click="validate"

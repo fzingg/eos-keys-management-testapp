@@ -26,16 +26,6 @@ export default {
   },
   data: () => ({
       defaultNbKeys: 5,
-      keyPair: {
-        private: '',
-        public: ''
-      },
-      messageSignature: '',
-      recoveredKPub: '',
-      encryptedKPriv: '',
-      decryptedKPriv: '',
-      pinCode: '1546895',
-      
       valid: true,
       pincode: '',
       pincodeRules: [
