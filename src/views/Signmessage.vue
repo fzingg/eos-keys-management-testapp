@@ -5,8 +5,6 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 
 import { 
   get_Public_EncPrivate_KeysPair_fromStorage,  
-  getDatafromStorage,
-  decryptData,
   generateMessageSignature
    } from '@/mixins/crypto-utils';
 
@@ -55,17 +53,21 @@ export default {
         const { valid } = await form.validate()
 
         if (valid) {
-          if (this.select != null) {
-            this.encryptedMessageSignature = generateMessageSignature(this.inputmessage, this.select, this.pincode)
-          } else {
-            this.encryptedMessageSignature = "Private key selection problem occured."
-          }
+          this.displaySignature(this.inputmessage, this.select, this.pincode)
          }
       },
 
     reset () {
       let form: any = this.$refs.form
       form.reset()
+    },
+
+    async displaySignature(inputmessage: string, encPrivateKey: string, pincode: string) {
+      if (encPrivateKey != null) {
+        this.encryptedMessageSignature = generateMessageSignature(inputmessage, encPrivateKey, pincode)
+      } else {
+        this.encryptedMessageSignature = "Private key selection problem occured."
+      }
     },
     
     updateGeneratedKeysPairList() {
@@ -97,6 +99,7 @@ export default {
     ></v-text-field>
 
     <v-select
+      selectid="keys-pair-select"
       v-model="select"
       :items="generatedpublickeys"
       item-title="publickey"

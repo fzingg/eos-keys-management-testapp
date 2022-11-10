@@ -6,9 +6,6 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 
 import { encryptData, 
   get_Public_EncPrivate_KeysPair_fromStorage, 
-  saveDatatoStorage, 
-  getDatafromStorage,
-  generateUniqueKeysPair,
   generateKeysPairWithEncryption } from '@/mixins/crypto-utils';
 
 

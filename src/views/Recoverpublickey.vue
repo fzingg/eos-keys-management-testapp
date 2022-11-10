@@ -4,9 +4,6 @@
 import { Form, Field, ErrorMessage } from 'vee-validate';
 
 import { 
-  get_Public_EncPrivate_KeysPair_fromStorage,  
-  getDatafromStorage,
-  decryptData,
   recoverPublickey
    } from '@/mixins/crypto-utils';
 
@@ -39,7 +36,7 @@ export default {
         const { valid } = await form.validate()
 
         if (valid) {
-          this.recover()
+          this.recover(this.inputsignature, this.inputmessage)
         }
       },
 
@@ -48,9 +45,9 @@ export default {
       form.reset()
     },
     
-    async recover() {
+    async recover(inputsignature: string, inputmessage: string) {
       try {
-        const eccMigrationKPub = recoverPublickey(this.inputsignature, this.inputmessage);
+        const eccMigrationKPub = recoverPublickey(inputsignature, inputmessage);
         this.recoveredpublickey = eccMigrationKPub;
       } catch (error) {
         this.recoveredpublickey = "Signature checksum doesn't match "
